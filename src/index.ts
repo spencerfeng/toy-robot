@@ -1,7 +1,7 @@
 import { App } from './App'
 import { Robot } from './Robot'
 
-const filePath = '../commands.txt'
+const filePath = './commands.txt'
 
 const robot = new Robot()
 
