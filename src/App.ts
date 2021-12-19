@@ -25,9 +25,13 @@ export class App {
   private createReadStreamSafe(filePath: string): Promise<fs.ReadStream> {
     return new Promise((resolve, reject) => {
       const fileStream = fs.createReadStream(filePath)
-      fileStream.on('error', reject).on('open', () => {
-        resolve(fileStream)
-      })
+      fileStream
+        .on('error', () => {
+          reject('Read file failed. Please make sure the file is in the same folder as the program.')
+        })
+        .on('open', () => {
+          resolve(fileStream)
+        })
     })
   }
 

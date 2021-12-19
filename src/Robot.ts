@@ -14,7 +14,7 @@ export class Robot {
   private currentPosition?: Position
   private currentCommand?: Command
 
-  constructor(movementBound: Bound) {
+  constructor(movementBound: Bound = { x: 0, y: 0, width: 5, height: 5 }) {
     this.movementBound = movementBound
   }
 
