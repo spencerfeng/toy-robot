@@ -3,6 +3,13 @@ import { Command } from './Command'
 import { Position } from '../types'
 import { Orientation } from '../enums'
 
+const TURN_LEFT_ORIENTATION_MAPPING: Record<Orientation, Orientation> = {
+  [Orientation.North]: Orientation.West,
+  [Orientation.West]: Orientation.South,
+  [Orientation.East]: Orientation.North,
+  [Orientation.South]: Orientation.East
+}
+
 export class LeftCommand implements Command {
   execute(commandText: string, robot: Robot): Position | undefined {
     const currentPosition = robot.getCurrentPosition()
@@ -10,33 +17,9 @@ export class LeftCommand implements Command {
     // the robot has not been correctly placed, we discard this command
     if (!currentPosition) return
 
-    let newPosition: Position
-
-    switch (currentPosition.orientation) {
-      case Orientation.North:
-        newPosition = {
-          ...currentPosition,
-          orientation: Orientation.West
-        }
-        break
-      case Orientation.East:
-        newPosition = {
-          ...currentPosition,
-          orientation: Orientation.North
-        }
-        break
-      case Orientation.South:
-        newPosition = {
-          ...currentPosition,
-          orientation: Orientation.East
-        }
-        break
-      case Orientation.West:
-        newPosition = {
-          ...currentPosition,
-          orientation: Orientation.South
-        }
-        break
+    let newPosition = {
+      ...currentPosition,
+      orientation: TURN_LEFT_ORIENTATION_MAPPING[currentPosition.orientation]
     }
 
     robot.presentCommand(commandText)
