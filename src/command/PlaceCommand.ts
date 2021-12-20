@@ -1,7 +1,7 @@
 import { Robot } from '../Robot'
 import { Command } from './Command'
 import { Position } from '../types'
-import { Orientation, AppError } from '../enums'
+import { Orientation } from '../enums'
 import { placeCommandRegex } from '../constants'
 
 export class PlaceCommand implements Command {

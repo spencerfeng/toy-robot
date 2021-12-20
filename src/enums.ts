@@ -4,9 +4,3 @@ export enum Orientation {
   South = 'SOUTH',
   West = 'WEST'
 }
-
-export enum AppError {
-  InvaidCommand,
-  NonExecutableCommand,
-  Unknown
-}
